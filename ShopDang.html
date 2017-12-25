@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name = "viewport" content="width = device-width,initial-scale=1.0"/>
+  <meta charset="utf-8">
+  <title>ShopDang</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <script src="jquery-3.2.1.min.js"></script>
+
+  <meta name="google-signin-client_id" content="189311342145-aj9udiu6pku0c8j61m5isgkvdmqgosmv.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+  <link rel="stylesheet" type="text/css" href="UIclass.css">
+
+    <style>
+         #map {
+          height: 450px;
+          width: 95%;
+         }
+    </style>
+    <script>
+          function initMap() {
+          var uluru = {lat: 17.884778, lng: 102.745695};
+          var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 14,
+              center: uluru
+                });
+          var marker = new google.maps.Marker({
+              position: uluru,
+              map: map
+                });
+              }
+
+        $(function(){
+            $.ajax({
+                url:"checkpromo.php",
+                type: "POST",
+                data:{"name":"แดงแหนมเนือง"},
+                success:function(check){
+                  console.log(check);
+                      if (check == ("havedata")) {
+                          $('#save').html('ยกเลิกการบันทึก')
+                          $('#save').click(function(){
+                              $.ajax({
+                                  url:"unsavepromo.php",
+                                  type: "POST",
+                                  data:{"name":"แดงแหนมเนือง"},
+                                  success:function(delecho){
+                                      console.log(delecho);
+                                  }
+                              });
+                          });
+                      }
+
+                      if (check == ("nodata")){
+                          $('#save').html('บันทึกโปรโมชั่น')
+                          $('#save').click(function(){
+                              $.ajax({
+                                  url:"savepromo.php",
+                                  type: "POST",
+                                  data:{"name":"แดงแหนมเนือง" , "description": "ยังไม่มีโปรโมชั่นใดๆ" , "link" : "ShopDang.html" , "img" : "photo/shopfood/ร้านแดง.jpg"},
+                                  success:function(saveecho){
+                                      console.log(saveecho);
+                                  }
+                              });
+
+                          });
+                      }
+                  }
+                });
+            });
+
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwlGJnsMn-_APIJN0pg1wBfmgRLxrvvws&callback=initMap">
+    </script>
+</head>
+
+<body >
+  <img src="photo/shopfood/bg1.jpg" style="position: fixed; z-index: -1; top: 0px; left: 0px; width: 100%;">
+<div class="masterpage">
+  <header style=" height: 132px; width: 100%; ">
+      <div class="row align-items-center" style="height: 100%; width: 100%; margin: auto;" >
+          <div class="col" >
+              <ul class="nav justify-content-center" >
+                  <li class="nav-item">
+                    <a class="nav-link active" href="index.html">หน้าหลัก</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="save.html">บันทึก</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="Shopfood.html">ร้านค้าทั้งหมด</a>
+                  </li>
+              </ul>
+          </div>
+          <div class="col" style="text-align: center;">
+              <font size="6" style="font-family: monospace;">Nong Khai Promo</font>
+          </div>
+          <div class="col" style="text-align: center;">
+            <ul class="nav justify-content-center" >
+                <li class="nav-item">
+                  <a class="nav-link active" href="addshop.html">เพิ่มร้าน</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="Contact.html">ช่วยเหลือ</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">เข้าสู่ระบบ</a>
+                </li>
+            </ul>
+          </div>
+        
+      </div> 
+  </header>
+  <div class="alert alert-success" role="alert">
+      <font  size="7"><b><font color ="#9999FF"><b>ร้านแดงแหนมเนือง</b></font></b></font>
+  </div>
+  <img src="photo/shopfood/ร้านแดง.jpg" style="width: 100%; height: 500px; background-color: black;"></a>
+ <div class="alert" role="alert">
+    <p style="margin-left: 50px;margin-right: 50px;text-indent: 2.5em;"> ร้านแหนมเนืองที่เป็นเหมือนเอกลักษณ์ประจำจังหวัดหนองคาย ใครที่ไปเที่ยวหนองคายเป็นต้องแวะไปทานที่ร้านนี้ ร้านตั้งอยู่ริมฝั่งแม่น้ำโขง บรรยากาศชิล ๆ สบาย ๆ ไม่ต้องบอกก็รู้ว่า "แหนมเนือง" เป็นเมนูอาหารขึ้นชื่อของทางร้าน ใครได้ลองทานเป็นต้องติดใจในรสชาติความอร่อยและลงตัวอย่างบอกไม่ถูก</p>
+
+    <p style="margin-left: 50px;margin-right: 50px;text-indent: 2.5em;">นอกจากนี้ยังมีเมนูอื่น ๆ ของทางร้านที่น่าทานอีกเพียบ เช่น แหนมซี่โครงหมูทอด แหนมสด ไส้กรอกอีสานทอด กุ้งพันอ้อย ยำหมูยอ กระยอทอด เป็นต้น ใครได้เห็นแล้วเป็นต้องน้ำลายไหลด้วยกันทุกคน ด้วยชื่อเสียงของทางร้านที่มีมายาวนานกว่า 40 ปี จึงน่าจะเป็นเครื่องรับประกันความเป็นต้นตำรับอาหารเวียดนามแห่งแรกในประเทศไทยได้อย่างสบาย ๆ</p>
+    <p style="margin-left: 50px;margin-right: 50px;">
+      <font color ="CC0066"><b>เวลาเปิด-ปิด : ทุกวัน เวลา 06.00-19.30 น.<b></font><br>
+      <font color ="#CC0066"><b>ที่อยู่ : 526-527 ถนนริมโขง อำเภอเมือง จังหวัดหนองคาย<b></font><br>
+      <font color ="#CC0066"><b>เบอร์โทรศัพท์: 042-411-961, 042-421-202, 042-411-234<b></font><br>
+      <font color ="#CC0066"><b>เว็บไซต์ : <a href="http://daengnamnuang.net/">daengnamnuang.net</a><b></font>
+  </p>
+</div>
+  <a href="ShopDang.html"><button type="button" class="btn btn-outline-dark" style="margin-left: 83%"  id="save" >บันทึกโปรโมชั่น</button></a>
+  <div id="map" style="margin-left: 20px; margin-top: 40px;"></div>
+
+</div>
+
+</body>
+</html>

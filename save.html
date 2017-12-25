@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Nong Khai Promo</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+	<script src="jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" href="UIclass.css" />
+
+	<script type="text/javascript">
+		$(function(){
+			$.ajax({
+                url:"allpro.php",
+                type: "POST",
+				dataType:"JSON",
+                success:function(out){
+                	console.log(out);
+                	var del = [];
+                	var iddel = [];
+                	for (var i = Object.keys(out).length - 1; i >= 0; i--){ 
+                		iddel[i] = out[i].name;
+                	}
+
+                	for (var i = Object.keys(out).length - 1; i >= 0; i--){ 
+                	    
+                	    /*<div class="row" style=" background:snow; height: 230px">
+							<div class="col-md-4" >
+								<img class="d-block w-100" style="height: 200px;" src="photo/com/pt2.jpg" alt="First slide">
+							</div>
+							<div class="col-md-8">
+									<h5>Yoobao</h5>
+		                            <h6>วันนี้ - 5 ธันวาคม 60</h6>
+		                            <h6>โปรโมชั่นเปิดร้านใหม่ ลด 30% จำนวนจำกัด 2500 สิทธิ</h6>
+		                            <br>
+		                            <h6>หมายเลขสิทธิของท่าน<a href="#"><คลิก></a></h6>
+		                            <br>
+		                            <button  type="button" class="btn btn-dark" href="1.html" >เพิ่มเติม</button>
+							</div>
+						</div>*/
+
+                	    var row = $('<div></div>');
+                	    row.addClass("row");
+                	    row.css({"height":"230px","margin":"auto","margin-bottom":"20px"});
+
+                	    var div1 = $('<div></div>');
+                	    div1.addClass("col-md-4");
+                	    
+                	    var image = $('<img>');
+                	    image.addClass("d-block w-100");
+                	    image.attr({"src": out[i].img });
+                	    image.css({"height":"200px","width":"auto"});
+                	    div1.append(image);
+
+                	    var div2 = $('<div></div>');
+                	    div2.addClass("col-md-8");
+                	    
+                	    var h5 = $('<h5></h5>');
+                	    h5.html(out[i].name);
+
+                	    var p = $('<p></p>');
+                	    p.addClass("card-text");
+                	    p.html(out[i].description);
+
+                	    var a = $('<a></a>');
+                	    a.addClass("btn btn-primary");
+                	    a.attr({"href": out[i].link });
+                	    a.html("เพิ่มเติม");
+
+                	    del[i] = $('<button></button>');
+                	    del[i].addClass("btn btn-outline-dark");
+                	    del[i].css({"margin-left":"75%"});
+                	    del[i].attr({ "id": iddel[i]});
+                	    //<button type="button" class="btn btn-outline-dark" style="margin-left: 83%"  id="save4" >บันทึกโปรโมชั่น</button>
+
+
+                	    div2.append(h5,p,a,del[i]);
+                	    row.append(div1,div2);
+                	    $('#allpromo').append(row);
+                	}
+
+                
+ 
+            	   	var temp = [];
+                	var j = (Object.keys(out).length-1);
+
+                	for (var i = Object.keys(out).length - 1; i >= 0; i--){ 
+                		$('#'+iddel[i]).html("ยกเลิกการบันทึก");
+
+                		$('#'+iddel[i]).click(function(){
+                			console.log(i);
+                			$.ajax({
+                			    url:"unsavepromo.php",
+                			    type: "POST",
+                			    data:{"name": out[j].name },
+                			    success:function(delecho){
+                			        console.log(delecho);
+                			        location.reload();
+                			    }
+                			});
+                			j -= 1;
+                		});
+
+                		
+                	}
+
+
+                }
+
+                
+            });
+			
+		});
+	</script>
+</head>
+<body>
+		<div class="masterpage">
+				<header style=" height: 132px; width: 100%; ">
+					  <div class="row align-items-center" style="height: 100%; width: 100%; margin: auto;" >
+						<div class="col" >
+							  <ul class="nav justify-content-center" >
+									<li class="nav-item">
+									  <a class="nav-link active" href="index.html">หน้าหลัก</a>
+									</li>
+									<li class="nav-item">
+									  <a class="nav-link" href="save.html">บันทึก</a>
+									</li>
+									<li class="nav-item">
+									  <a class="nav-link" href="Shopfood.html">ร้านค้าทั้งหมด</a>
+									</li>
+							  </ul>
+						</div>
+						<div class="col" style="text-align: center;">
+							  <font size="6" style="font-family: monospace;">Nong Khai Promo</font>
+						</div>
+						<div class="col" style="text-align: center;">
+							  <ul class="nav justify-content-center" >
+									<li class="nav-item">
+									  <a class="nav-link active" href="addshop.html">เพิ่มร้าน</a>
+									</li>
+									<li class="nav-item">
+									  <a class="nav-link" href="Contact.html">ช่วยเหลือ</a>
+									</li>
+									<li class="nav-item">
+									  <a class="nav-link" href="#">เข้าสู่ระบบ</a>
+									</li>
+							  </ul>
+						</div>
+					  </div> 
+				</header>
+
+				<div class="container">
+					<br>
+					<h2><center>โปรโมชั่นที่บันทึก</center></h2>
+					<br>
+					<div id="allpromo">
+						<!-- <div class="row" style=" background:snow; height: 230px">
+							<div class="col-md-4" >
+								<img class="d-block w-100" style="height: 200px;" src="photo/com/pt2.jpg" alt="First slide">
+							</div>
+							<div class="col-md-8">
+									<h5>Yoobao</h5>
+		                            <h6>วันนี้ - 5 ธันวาคม 60</h6>
+		                            <h6>โปรโมชั่นเปิดร้านใหม่ ลด 30% จำนวนจำกัด 2500 สิทธิ</h6>
+		                            <br>
+		                            <h6>หมายเลขสิทธิของท่าน<a href="#"><คลิก></a></h6>
+		                            <br>
+		                            <button  type="button" class="btn btn-dark" href="1.html" >เพิ่มเติม</button>
+							</div>
+						</div> -->
+					</div>
+
+				</div>
+
+			</div>
+
+
+		</div>
+	</div>
+</body>
+</html>

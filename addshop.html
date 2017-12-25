@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Nong Khai Promo</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="UIclass.css" />
+
+	<script>
+		$(function(){ 
+			$('#hot').click(function () {
+			    $('#change-text-button1').html("ยอดนิยม");
+			});
+			$('#exp').click(function () {
+			    $('#change-text-button1').html("ใกล้หมดอายุ");
+			});
+			$('#new-old').click(function () {
+			    $('#change-text-button1').html("ใหม่ -> เก่า");
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="masterpage">
+		<header style=" height: 132px; width: 100%; ">
+		  	<div class="row align-items-center" style="height: 100%; width: 100%; margin: auto;" >
+		    	<div class="col" >
+	      			<ul class="nav justify-content-center" >
+	      	  			<li class="nav-item">
+	      	    			<a class="nav-link active" href="index.html">หน้าหลัก</a>
+	      	  			</li>
+	      	  			<li class="nav-item">
+	      	    			<a class="nav-link" href="save.html">บันทึก</a>
+	      	  			</li>
+	      	  			<li class="nav-item">
+	      	    			<a class="nav-link" href="Shopfood.html">ร้านค้าทั้งหมด</a>
+	      	  			</li>
+	      			</ul>
+		    	</div>
+		    	<div class="col" style="text-align: center;">
+		      		<font size="6" style="font-family: monospace;">Nong Khai Promo</font>
+		    	</div>
+		    	<div class="col" style="text-align: center;">
+      				<ul class="nav justify-content-center" >
+      		  			<li class="nav-item">
+      		    			<a class="nav-link active" href="addshop.html">เพิ่มร้าน</a>
+      		  			</li>
+      		  			<li class="nav-item">
+      		    			<a class="nav-link" href="Contact.html">ช่วยเหลือ</a>
+      		  			</li>
+      		  			<li class="nav-item">
+      		    			<a class="nav-link" href="#">เข้าสู่ระบบ</a>
+      		  			</li>
+      				</ul>
+		    	</div>
+		  	</div> 
+		</header>
+		<div class="container">
+                <br>
+                <h2><center>โปรโมชั่นทั้งหมดของร้าน</center></h2>
+                <br>
+                <div class="row" style=" background:snow; height: 230px">
+                    <div class="col-md-4" >
+                        <img class="d-block w-100" style="height: 200px;" src="photo/food/f4.jpg" alt="First slide">
+                    </div>
+                    <div class="col-md-8">
+                        <h5>Joy of Sharing</h5>
+                        <h6>วันนี้ - 30 พ.ย. 60</h6>
+                        <h6>Joy of Sharing</h6>
+                        <br>
+                        <button type="button" class="btn btn-dark">เพิ่มเติม</button>
+                    </div>
+                </div>
+
+                <div class="row" style=" background:snow; height: 500px">
+                    <div class="col-md-4">
+                        <img class="d-block w-100" style="height: 250;" src="photo/promotion/royal1.jpg" alt="First slide">
+                    </div>
+                    <div class="col-md-8">
+                        <h5>Royal Project</h5>
+                        <h6>วันนี้ - 15 ต.ค. 60</h6>
+                        <h6>เมนูพิเศษจากวัตถุดิบคุณภาพจากโครงการหลวง สร้างสรรค์โดย เชฟชุมพล แจ้งไพร (เชฟกระทะเหล็กประเทศไทย) เชฟตาม...</h6>
+                        <br>
+                        <button type="button" class="btn btn-dark">เพิ่มเติม</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="container">
+                  <button type="button" class="btn btn-dark btn-sm btn-block">เพิ่มเติม</button>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-sm-4"  style="background-color:lavender;">
+                    <p>ติดต่อสอบถาม</p><br>
+    
+                    abcdefg@gmail.com<br><br> 
+    
+                    099-999-9999
+    
+                </div>
+    
+                <div class="col-sm-8" style="background-color:lavenderblush;">
+                    <input type="text" name="name" size="40"  placeholder="ชื่อ"><br><br>
+                    <input type="emali" name="emali" size="40" placeholder="example@domain.com"><br><br>
+                    <input type="text" name="phone" size="40" placeholder="เบอรโทร"><br><br>
+                    <input type="text" name="ข้อความ" size="40" placeholder="message"><br><br>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+              </div>
+                <br>
+
+
+    </div>
+</div>
+</body>
+</html>

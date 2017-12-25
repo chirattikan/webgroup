@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name = "viewport" content="width = device-width,initial-scale=1.0"/>
+  <meta charset="utf-8">
+  <title>ShopDD</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <script src="jquery-3.2.1.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="UIclass.css">
+</head>
+  <style>
+         #map {
+          height: 450px;
+          width: 95%;
+         }
+      </style>
+      <script>
+          function initMap() {
+          var uluru = {lat: 17.881096, lng: 102.745592};
+          var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 14,
+              center: uluru
+                });
+          var marker = new google.maps.Marker({
+              position: uluru,
+              map: map
+                });
+              }
+
+              $(function(){
+                  $.ajax({
+                      url:"checkpromo.php",
+                      type: "POST",
+                      data:{"name":"DDโภชนา"},
+                      success:function(check){
+                        console.log(check);
+                            if (check == ("havedata")) {
+                                $('#save3').html('ยกเลิกการบันทึก')
+                                $('#save3').click(function(){
+                                    $.ajax({
+                                        url:"unsavepromo.php",
+                                        type: "POST",
+                                        data:{"name":"DDโภชนา"},
+                                        success:function(delecho){
+                                            console.log(delecho);
+                                        }
+                                    });
+                                });
+                            }
+
+                            if (check == ("nodata")){
+                                $('#save3').html('บันทึกโปรโมชั่น')
+                                $('#save3').click(function(){
+                                    $.ajax({
+                                        url:"savepromo.php",
+                                        type: "POST",
+                                        data:{"name":"DDโภชนา" , "description": "ยังไม่มีโปรโมชั่นใดๆ" , "link" : "ShopDD.html" , "img" : "photo/shopfood/ร้านดีดี.jpg"},
+                                        success:function(saveecho){
+                                            console.log(saveecho);
+                                        }
+                                    });
+
+                                });
+                            }
+                        }
+                      });
+                  });
+      </script>
+      <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwlGJnsMn-_APIJN0pg1wBfmgRLxrvvws&callback=initMap">
+      </script>
+</head>
+
+
+<body >
+  <img src="photo/shopfood/bg1.jpg" style="position: fixed; z-index: -1; top: 0px; left: 0px; width: 100%;">
+<div class="masterpage">
+  <header style=" height: 132px; width: 100%; ">
+      <div class="row align-items-center" style="height: 100%; width: 100%; margin: auto;" >
+          <div class="col" >
+              <ul class="nav justify-content-center" >
+                  <li class="nav-item">
+                    <a class="nav-link active" href="index.html">หน้าหลัก</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="save.html">บันทึก</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="Shopfood.html">ร้านค้าทั้งหมด</a>
+                  </li>
+              </ul>
+          </div>
+          <div class="col" style="text-align: center;">
+              <font size="6" style="font-family: monospace;">Nong Khai Promo</font>
+          </div>
+          <div class="col" style="text-align: center;">
+            <ul class="nav justify-content-center" >
+                <li class="nav-item">
+                  <a class="nav-link active" href="addshop.html">เพิ่มร้าน</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="Contact.html">ช่วยเหลือ</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">เข้าสู่ระบบ</a>
+                </li>
+            </ul>
+          </div>
+        
+      </div> 
+  </header>
+  <div class="alert alert-success" role="alert">
+      <font  size="7"><b><font color ="#9999FF"><b>ร้านดีดีโภชนา</b></font></b></font>
+  </div>
+  <img src="photo/shopfood/ร้านดีดี.jpg" style="width: 100%; height: 500px; background-color: black;"></a>
+ <div class="alert alert-light" role="alert">
+    <p style="margin-left: 50px;margin-right: 50px;text-indent: 2.5em;">เป็นที่กล่าวขานกันว่าร้านดีดี โภชนา เปรียบเสมือนเป็นร้านรับแขกของจังหวัดหนองคาย ร้านข้าวต้มอร่อยเก่าแก่ บริเวณร้านกว้างขวาง เปิดโล่ง ถึงแม้ว่าลูกค้าจะเยอะ แต่ก็นั่งสบาย ไม่แออัดจนเกินไป ไม่ต้องห่วงเรื่องเมนูอาหาร เพราะมีให้เลือกมากมายไม่อั้น เช่น ผัดผักบุ้ง หมูสับปลาเค็ม ไส้พะโล้ มะระผัดไข่ ยำไข่เค็ม ซุปเปอร์ขาไก่ จับฉ่าย เป็ดร่อน เป็นต้น สั่งมาทานคู่กับข้าวต้มร้อน ๆ สักถ้วยสองถ้วย เป็นความอิ่มที่กำลังพอดีเลยทีเดียว เมนูทุกอย่างอร่อยแบบไม่มีที่ติ และไม่แปลกใจเลยว่าทำไมร้านนี้ถึงเป็นร้านดังขึ้นชื่อประจำจังหวัด
+    </p>
+    <p style="margin-left: 50px;margin-right: 50px;">
+      <font color ="CC0066"><b>เวลาเปิด-ปิด : ทุกวัน เวลา 11.00-02.00 น.<b></font><br>
+      <font color ="#CC0066"><b>ที่อยู่ :1155/9 ถนนประจักษ์ อำเภอเมือง จังหวัดหนองคาย<b></font><br>
+      <font color ="#CC0066"><b>เบอร์โทรศัพท์: 042-411-548<b></font><br>
+    </p>
+      
+</div>
+  <a href="ShopDD.html"><button type="button" class="btn btn-outline-dark" style="margin-left: 83%"  id="save3" >บันทึกโปรโมชั่น</button></a>
+   <div id="map" style="margin-left: 20px; margin-top: 40px;"></div>
+</div>
+
+</body>
+</html>
